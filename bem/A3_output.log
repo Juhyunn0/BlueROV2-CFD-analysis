@@ -1,0 +1,23 @@
+
+=== added-mass matrix, omega = 1.0 rad/s ===
+             Surge      Sway     Heave      Roll     Pitch       Yaw
+  Surge      9.746    -0.025    -0.333     0.001    -0.205     0.004
+   Sway     -0.024    14.143    -0.004     0.064    -0.001    -0.082
+  Heave     -0.321    -0.103    35.027    -0.014     0.094    -0.002
+   Roll      0.000     0.087    -0.011     0.415     0.000     0.006
+  Pitch     -0.198    -0.000     0.095     0.000     0.254     0.001
+    Yaw      0.001    -0.078    -0.000     0.006    -0.000     0.247
+
+=== added-mass matrix, omega = 5.0 rad/s ===
+             Surge      Sway     Heave      Roll     Pitch       Yaw
+  Surge      9.745    -0.025    -0.333     0.001    -0.205     0.004
+   Sway     -0.024    14.143    -0.004     0.064    -0.001    -0.082
+  Heave     -0.321    -0.103    35.027    -0.014     0.094    -0.002
+   Roll      0.000     0.087    -0.011     0.415     0.000     0.006
+  Pitch     -0.198    -0.000     0.095     0.000     0.254     0.001
+    Yaw      0.001    -0.078    -0.000     0.006    -0.000     0.247
+
+max relative difference omega=1 vs 5: 0.010%
+volume V = 0.01993 m^3, rho*V = 19.93 kg
+centroid (CAD frame) = [0.28529117 0.16159451 0.23707379]
+saved added_mass.json

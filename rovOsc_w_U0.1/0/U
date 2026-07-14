@@ -1,0 +1,56 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Oscillating inflow: U(t) = U0 sin(2 pi t / T) along +y; U0=0.1, T=1.5 s
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    ymin
+    {
+        type            uniformFixedValue;
+        uniformValue
+        {
+            type            sine;
+            amplitude       (0 0.1 0);
+            frequency       0.66666667;
+            start           0;
+            level           (0 0 0);
+        }
+        value           uniform (0 0 0);
+    }
+
+    ymax
+    {
+        type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
+    }
+
+    "(xmin|xmax|zmin|zmax)"
+    {
+        type            slip;
+    }
+
+    "BROV2.*"
+    {
+        type            noSlip;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,137 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : decomposePar -copyZero
+Date   : Jul 14 2026
+Time   : 00:22:37
+Host   : "bdml-GIGABYTE-RPL999"
+PID    : 300841
+I/O    : uncollated
+Case   : /home/bdml/Desktop/OpenFoam12/sphereOsc
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Calculating distribution of cells
+
+Selecting decomposer hierarchical
+
+Finished decomposition in 0.019913 s
+
+Calculating original mesh data
+
+Distributing cells to processors
+
+Distributing faces to processors
+
+Distributing points to processors
+
+Constructing processor meshes
+
+Processor 0
+    Number of cells = 15625
+    Number of faces shared with processor 1 = 625
+    Number of faces shared with processor 2 = 625
+    Number of faces shared with processor 4 = 625
+    Number of processor patches = 3
+    Number of processor faces = 1875
+    Number of boundary faces = 1875
+
+Processor 1
+    Number of cells = 15625
+    Number of faces shared with processor 0 = 625
+    Number of faces shared with processor 3 = 625
+    Number of faces shared with processor 5 = 625
+    Number of processor patches = 3
+    Number of processor faces = 1875
+    Number of boundary faces = 1875
+
+Processor 2
+    Number of cells = 15625
+    Number of faces shared with processor 0 = 625
+    Number of faces shared with processor 3 = 625
+    Number of faces shared with processor 6 = 625
+    Number of processor patches = 3
+    Number of processor faces = 1875
+    Number of boundary faces = 1875
+
+Processor 3
+    Number of cells = 15625
+    Number of faces shared with processor 1 = 625
+    Number of faces shared with processor 2 = 625
+    Number of faces shared with processor 7 = 625
+    Number of processor patches = 3
+    Number of processor faces = 1875
+    Number of boundary faces = 1875
+
+Processor 4
+    Number of cells = 15625
+    Number of faces shared with processor 0 = 625
+    Number of faces shared with processor 5 = 625
+    Number of faces shared with processor 6 = 625
+    Number of processor patches = 3
+    Number of processor faces = 1875
+    Number of boundary faces = 1875
+
+Processor 5
+    Number of cells = 15625
+    Number of faces shared with processor 1 = 625
+    Number of faces shared with processor 4 = 625
+    Number of faces shared with processor 7 = 625
+    Number of processor patches = 3
+    Number of processor faces = 1875
+    Number of boundary faces = 1875
+
+Processor 6
+    Number of cells = 15625
+    Number of faces shared with processor 2 = 625
+    Number of faces shared with processor 4 = 625
+    Number of faces shared with processor 7 = 625
+    Number of processor patches = 3
+    Number of processor faces = 1875
+    Number of boundary faces = 1875
+
+Processor 7
+    Number of cells = 15625
+    Number of faces shared with processor 3 = 625
+    Number of faces shared with processor 5 = 625
+    Number of faces shared with processor 6 = 625
+    Number of processor patches = 3
+    Number of processor faces = 1875
+    Number of boundary faces = 1875
+
+Number of processor faces = 7500
+Max number of cells = 15625 (0% above average 15625)
+Max number of processor patches = 3 (0% above average 3)
+Max number of faces between processors = 1875 (0% above average 1875)
+
+Time = 0s
+
+Processor 0: copying "/home/bdml/Desktop/OpenFoam12/sphereOsc/0"
+ to "/home/bdml/Desktop/OpenFoam12/sphereOsc/processor0/0"
+Processor 1: copying "/home/bdml/Desktop/OpenFoam12/sphereOsc/0"
+ to "/home/bdml/Desktop/OpenFoam12/sphereOsc/processor1/0"
+Processor 2: copying "/home/bdml/Desktop/OpenFoam12/sphereOsc/0"
+ to "/home/bdml/Desktop/OpenFoam12/sphereOsc/processor2/0"
+Processor 3: copying "/home/bdml/Desktop/OpenFoam12/sphereOsc/0"
+ to "/home/bdml/Desktop/OpenFoam12/sphereOsc/processor3/0"
+Processor 4: copying "/home/bdml/Desktop/OpenFoam12/sphereOsc/0"
+ to "/home/bdml/Desktop/OpenFoam12/sphereOsc/processor4/0"
+Processor 5: copying "/home/bdml/Desktop/OpenFoam12/sphereOsc/0"
+ to "/home/bdml/Desktop/OpenFoam12/sphereOsc/processor5/0"
+Processor 6: copying "/home/bdml/Desktop/OpenFoam12/sphereOsc/0"
+ to "/home/bdml/Desktop/OpenFoam12/sphereOsc/processor6/0"
+Processor 7: copying "/home/bdml/Desktop/OpenFoam12/sphereOsc/0"
+ to "/home/bdml/Desktop/OpenFoam12/sphereOsc/processor7/0"
+
+End
+

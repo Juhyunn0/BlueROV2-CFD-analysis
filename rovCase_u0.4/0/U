@@ -1,0 +1,49 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Surge inflow: 0.6 m/s along +z
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0.4);
+
+boundaryField
+{
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (0 0 0.4);
+    }
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           uniform (0 0 0.4);
+    }
+
+    "side.*"
+    {
+        type            symmetry;
+    }
+
+    "BROV2.*"
+    {
+        type            noSlip;
+    }
+}
+
+// ************************************************************************* //

@@ -1,9 +1,28 @@
-cat <<EOT > .gitignore
 # 폴더 구조 상관없이 모든 대용량 파일 완전 제외
 **/*.stl
 **/*.STL
 **/*.eMesh
 **/*.extendedFeatureEdgeMesh
-EOT
+
+# local Python virtualenv
+bemenv/
+
+# derived solver output: volume-field time dirs and VTK exports
+# (forces.dat time series, logs, and all dicts stay tracked)
+**/VTK/
+**/processor*/[1-9]*/
+**/processor*/[0-9]*.[0-9]*/
+rovCase*/[1-9]*/
+rovOsc*/[1-9]*/
+rovOsc*/[0-9]*.[0-9]*/
+sphereOsc*/[1-9]*/
+sphereOsc*/[0-9]*.[0-9]*/
+
+# duplicate/regenerable decomposed meshes of clone cases
+# (base-case meshes rovCase/ and rovOsc/ remain tracked)
+rovOsc_*/processor*/
+rovCase_u*/processor*/
+sphereOsc*/processor*/
+
 # Claude instructions (local only)
 CLAUDE.md

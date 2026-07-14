@@ -1,0 +1,206 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Which of the steps to run
+castellatedMesh true;
+snap            true;
+addLayers       false;
+
+
+// Geometry. Definition of all surfaces.
+geometry
+{
+    BROV2
+    {
+        type triSurfaceMesh;
+        file "BROV2.stl";
+    }
+
+    // Wake refinement region behind (z+) and around the body
+    wakeBox
+    {
+        type searchableBox;
+        min (-0.10 -0.10 -0.10);
+        max ( 0.675  0.354  1.37);
+    }
+};
+
+
+// Settings for the castellatedMesh generation.
+castellatedMeshControls
+{
+    maxLocalCells 100000;
+
+    maxGlobalCells 3000000;
+
+    minRefinementCells 10;
+
+    maxLoadUnbalance 0.10;
+
+    // Number of buffer layers between different levels.
+    nCellsBetweenLevels 3;
+
+
+    // Explicit feature edge refinement
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    features
+    (
+        {
+            file "BROV2.eMesh";
+            level 3;
+        }
+    );
+
+
+    // Surface based refinement
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    refinementSurfaces
+    {
+        BROV2
+        {
+            // Surface-wise min and max refinement level
+            level (2 3);
+
+            patchInfo
+            {
+                type wall;
+            }
+        }
+    }
+
+    // Resolve sharp angles
+    resolveFeatureAngle 60;
+
+
+    // Region-wise refinement
+    // ~~~~~~~~~~~~~~~~~~~~~~
+
+    refinementRegions
+    {
+        wakeBox
+        {
+            mode    inside;
+            level   1;
+        }
+    }
+
+
+    // Mesh selection
+    // ~~~~~~~~~~~~~~
+
+    // Point in the fluid region, outside the ROV body
+    insidePoint (-0.501 0.501 -0.501);
+
+    allowFreeStandingZoneFaces false;
+}
+
+
+// Settings for the snapping.
+snapControls
+{
+    nSmoothPatch 3;
+
+    tolerance 2.0;
+
+    nSolveIter 30;
+
+    nRelaxIter 5;
+
+    // Feature snapping
+    nFeatureSnapIter 10;
+}
+
+
+// Settings for the layer addition (addLayers off for now).
+addLayersControls
+{
+    relativeSizes true;
+
+    layers
+    {
+    }
+
+    expansionRatio 1.0;
+
+    finalLayerThickness 0.3;
+
+    minThickness 0.1;
+
+    nGrow 0;
+
+    featureAngle 100;
+
+    slipFeatureAngle 30;
+
+    nRelaxIter 3;
+
+    nSmoothSurfaceNormals 1;
+
+    nSmoothNormals 3;
+
+    nSmoothThickness 2;
+
+    maxFaceThicknessRatio 0.5;
+
+    maxThicknessToMedialRatio 0.3;
+
+    minMedianAxisAngle 90;
+
+    nBufferCellsNoExtrude 0;
+
+    nLayerIter 50;
+}
+
+
+// Generic mesh quality settings.
+meshQualityControls
+{
+    maxNonOrtho 65;
+
+    maxBoundarySkewness 3.5;
+    maxInternalSkewness 3.5;
+
+    maxConcave 80;
+
+    minFlatness 0.5;
+
+    minVol -1e30;
+
+    minTetQuality 1e-30;
+
+    minTwist 0.02;
+
+    minDeterminant 0.001;
+
+    minFaceWeight 0.02;
+
+    minVolRatio 0.01;
+
+    // Advanced
+
+    nSmoothScale 4;
+    errorReduction 0.75;
+}
+
+
+// Advanced
+
+// Merge tolerance. Is fraction of overall bounding box of initial mesh.
+mergeTolerance 1e-6;
+
+
+// ************************************************************************* //

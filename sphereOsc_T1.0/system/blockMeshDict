@@ -1,0 +1,91 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Sphere D = 0.3 m at origin; oscillating flow along z.
+// Domain [-1.25, 1.25]^3 = 8.3D per axis; uniform 50 mm cells (50^3 = 125k).
+
+convertToMeters 1;
+
+vertices
+(
+    (-1.25 -1.25 -1.25)
+    ( 1.25 -1.25 -1.25)
+    ( 1.25  1.25 -1.25)
+    (-1.25  1.25 -1.25)
+    (-1.25 -1.25  1.25)
+    ( 1.25 -1.25  1.25)
+    ( 1.25  1.25  1.25)
+    (-1.25  1.25  1.25)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (50 50 50) simpleGrading (1 1 1)
+);
+
+boundary
+(
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+    sideXMin
+    {
+        type symmetry;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    sideXMax
+    {
+        type symmetry;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    sideYMin
+    {
+        type symmetry;
+        faces
+        (
+            (1 5 4 0)
+        );
+    }
+    sideYMax
+    {
+        type symmetry;
+        faces
+        (
+            (3 7 6 2)
+        );
+    }
+);
+
+// ************************************************************************* //

@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Vehicle frame, body centred at origin: x = surge, y = sway, z = heave.
+// Body: x +-0.229, y +-0.287, z +-0.127 (L = 0.457 m).
+// Domain +-2.30 m (>= 5 L on every axis), uniform 50 mm cells (92^3 = 779k).
+
+convertToMeters 1;
+
+vertices
+(
+    (-2.30 -2.30 -2.30)
+    ( 2.30 -2.30 -2.30)
+    ( 2.30  2.30 -2.30)
+    (-2.30  2.30 -2.30)
+    (-2.30 -2.30  2.30)
+    ( 2.30 -2.30  2.30)
+    ( 2.30  2.30  2.30)
+    (-2.30  2.30  2.30)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (92 92 92) simpleGrading (1 1 1)
+);
+
+boundary
+(
+    xmin
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    xmax
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    ymin
+    {
+        type patch;
+        faces
+        (
+            (1 5 4 0)
+        );
+    }
+    ymax
+    {
+        type patch;
+        faces
+        (
+            (3 7 6 2)
+        );
+    }
+    zmin
+    {
+        type patch;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    zmax
+    {
+        type patch;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+);
+
+// ************************************************************************* //
