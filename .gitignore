@@ -5,3 +5,5 @@ cat <<EOT > .gitignore
 **/*.eMesh
 **/*.extendedFeatureEdgeMesh
 EOT
+# Claude instructions (local only)
+CLAUDE.md
