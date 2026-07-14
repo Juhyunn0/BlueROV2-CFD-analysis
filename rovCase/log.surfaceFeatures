@@ -1,0 +1,71 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : surfaceFeatures
+Date   : Jul 13 2026
+Time   : 18:35:27
+Host   : "bdml-GIGABYTE-RPL999"
+PID    : 267349
+I/O    : uncollated
+Case   : /home/bdml/Desktop/OpenFoam12/rovCase
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Reading "surfaceFeaturesDict"
+
+Surface            : "BROV2.stl"
+
+
+Feature line extraction is only valid on closed manifold surfaces.
+Statistics:
+Triangles    : 6177690
+Vertices     : 3078996
+Bounding Box : (6.2272e-05 0 0) (0.574907 0.253852 0.4572)
+
+
+Constructing feature set from included angle 2.61799
+Selecting edges purely based on geometric tests: no
+
+Initial feature set:
+    feature points : 51513
+    feature edges  : 1834724
+    of which
+        region edges   : 25642
+        external edges : 1049131
+        internal edges : 759951
+
+
+Final feature set:
+points      : 1800111
+edges       : 1834724
+boundingBox : (0.0211836 0.00313385 0.00841162) (0.553786 0.252246 0.454889)
+point classification :
+    convex feature points          :    23545
+    concave feature points         :     3252
+    mixed feature points           :    24716
+    other (non-feature) points     :  1748598
+edge classification :
+    external (convex angle) edges  :  1049496
+    internal (concave angle) edges :   759586
+    flat region edges              :        0
+    open edges                     :       24
+    multiply connected edges       :    25618
+
+Writing extendedFeatureEdgeMesh to "constant/extendedFeatureEdgeMesh/BROV2.extendedFeatureEdgeMesh"
+
+Writing featureEdgeMesh to "constant/geometry/BROV2.eMesh"
+
+ExecutionTime = 7.70795 s  ClockTime = 7 s
+
+End
+

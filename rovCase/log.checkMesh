@@ -1,0 +1,117 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : checkMesh -allTopology -parallel
+Date   : Jul 13 2026
+Time   : 18:44:12
+Host   : "bdml-GIGABYTE-RPL999"
+PID    : 270775
+I/O    : uncollated
+Case   : /home/bdml/Desktop/OpenFoam12/rovCase
+nProcs : 8
+Slaves : 
+7
+(
+"bdml-GIGABYTE-RPL999.270776"
+"bdml-GIGABYTE-RPL999.270777"
+"bdml-GIGABYTE-RPL999.270778"
+"bdml-GIGABYTE-RPL999.270779"
+"bdml-GIGABYTE-RPL999.270780"
+"bdml-GIGABYTE-RPL999.270781"
+"bdml-GIGABYTE-RPL999.270782"
+)
+
+Pstream initialised with:
+    floatTransfer      : false
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Enabling all (cell, face, edge, point) topology checks.
+
+Time = 0s
+
+Mesh stats
+    points:           459869
+    faces:            1237948
+    internal faces:   1150213
+    cells:            391032
+    faces per cell:   6.10733
+    boundary patches: 11
+    point zones:      0
+    face zones:       0
+    cell zones:       0
+
+Overall number of cells of each type:
+    hexahedra:     364601
+    prisms:        4019
+    wedges:        0
+    pyramids:      0
+    tet wedges:    197
+    tetrahedra:    9
+    polyhedra:     22206
+    Breakdown of polyhedra by number of faces:
+        faces   number of cells
+            4   1984
+            5   3127
+            6   4623
+            7   3
+            8   7
+            9   8678
+           12   2401
+           15   1188
+           18   193
+           21   2
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+    Topological cell zip-up check OK.
+  <<Number of faces with non-consecutive shared points: 8. This might indicate a problem.
+    Number of regions: 1 (OK).
+
+Checking basic patch addressing...
+                   Patch    Faces   Points
+                   inlet     2640     2793
+                  outlet     2640     2795
+                sideXMin     3456     3630
+                sideXMax     3456     3629
+                sideYMin     3960     4225
+                sideYMax     3960     4223
+                   BROV2    40501    44211
+
+Checking geometry...
+    Overall domain bounding box (-0.945 -0.945 -0.945) (1.53 1.215 2.295)
+    Mesh has 3 geometric (non-empty/wedge) directions (1 1 1)
+    Mesh has 3 solution (non-empty) directions (1 1 1)
+    Max cell openness = 4.2694e-16 OK.
+    Max aspect ratio = 9.74237 OK.
+    Minimum face area = 9.81295e-07. Maximum face area = 0.00204243.  Face area magnitudes OK.
+    Min volume = 1.27164e-08. Max volume = 9.19177e-05.  Total volume = 17.3066.  Cell volumes OK.
+    Mesh non-orthogonality Max: 63.8499 average: 7.46294
+    Non-orthogonality check OK.
+    Face pyramids OK.
+    Max skewness = 3.2262 OK.
+    Coupled point location match (average 0) OK.
+
+Mesh OK.
+
+End
+
+Finalising parallel run

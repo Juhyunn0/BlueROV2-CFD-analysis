@@ -1,0 +1,7 @@
+cat <<EOT > .gitignore
+# 폴더 구조 상관없이 모든 대용량 파일 완전 제외
+**/*.stl
+**/*.STL
+**/*.eMesh
+**/*.extendedFeatureEdgeMesh
+EOT
