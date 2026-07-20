@@ -24,5 +24,11 @@ rovOsc_*/processor*/
 rovCase_u*/processor*/
 sphereOsc*/processor*/
 
+# regenerable GCI-family meshes (dicts + logs stay tracked)
+rovCase_gci_*/processor*/
+rovCase_gci_*/constant/polyMesh/
+rovOsc_gci_*/constant/polyMesh/
+scripts/__pycache__/
+
 # Claude instructions (local only)
 CLAUDE.md

@@ -19,7 +19,10 @@ and raw fit JSONs referenced below live in this repository.
 - Solid volume of the as-meshed body from the patch integral:
   **V_solid = 0.01440 m³ → ρV_solid = 14.40 kg** (ρ = 1000 kg/m³). This is
   the Froude–Krylov mass subtracted in every oscillation fit, reported
-  separately per run in the tables below.
+  separately per run in the tables below. Across the mesh-convergence
+  family V_solid converges monotonically (R ≈ 0.20) to a Richardson limit
+  ≈ 0.01423 m³ — the CAD-with-props displacement, +6% over von Benzon's
+  bare-vehicle 0.0134 m³.
 - BEM surrogate: watertight envelope rebuilt by voxel closing + marching
   cubes (`bem/BROV2_watertight.stl`, 13,988 faces, V = 0.01993 m³ — closure
   inflates volume; the BEM matrix is therefore a **sealed-geometry
@@ -122,12 +125,17 @@ CofR (bounding-box centre).
 |---|---|---|
 | X_u̇ | **6.49 ± 0.24 kg** | CFD forced-oscillation, KC→0 midpoint of linear/KC^(2/3) intercepts ± half spread (stat. SE 0.03/0.09) |
 | Y_v̇ | **14.41 ± 0.42 kg** | same (stat. SE 0.08/0.04) |
-| Z_ẇ | **30.96 ± 0.63 kg** | same (stat. SE 0.09/0.35) |
+| Z_ẇ | **30.96 ± 0.64 kg** | same (stat. SE 0.09/0.35); propagated incl. mesh ±0.39% and dt ±0.16% (§7) |
 | K_ṗ | **0.4145 kg·m²** | BEM sealed-geometry potential-flow reference, about BEM volume centroid |
 | M_q̇ | **0.2536 kg·m²** | BEM sealed-geometry potential-flow reference, about BEM volume centroid |
 | N_ṙ | **0.2474 kg·m²** | BEM sealed-geometry potential-flow reference, about BEM volume centroid |
 | K_L (X_u) | **0.388 ± 0.028 N·s/m** | steady CFD drag sweep 0.2–1.0 m/s, linear+quadratic fit through origin |
-| K_Q (X_u|u|) | **36.25 ± 0.03 N·s²/m²** | same (pure-quadratic alternative: 36.69 ± 0.06) |
+| K_Q (X_u|u|) | **36.25 ± 0.03 N·s²/m²** | same (pure-quadratic alternative: 36.69 ± 0.06); refined-mesh limit ≈ 35.3 (§7) |
+
+Mesh certification (§7): Z_ẇ carries ±0.39% (mesh) ± 0.16% (dt), giving the
+propagated **Z_ẇ = 30.96 ± 0.64 kg** (model spread dominant); surge/sway
+mesh uncertainty is assumed to be of the same class (±0.4%), subdominant to
+their quoted model spreads.
 
 Context: Li et al. 2020 CFD reports K_Q ≈ 38.2 (−5% vs ours); the
 von Benzon 2022 experimental damping (X_u = 13.7, X_u|u| = 141) is ~4×
@@ -157,24 +165,78 @@ consistent with the inflated sealed volume.
   forces in heave: A_xz = −0.09 kg, A_yz = +0.002 kg. Treat the added-mass
   matrix as diagonal at this fidelity.
 
-## 7. Limits of this dataset (read before using)
+## 7. Mesh convergence (Richardson/GCI study, Celik et al. 2008)
 
-Single mesh per configuration — no grid-independence study for the
-oscillation cases; wall functions on a mesh without boundary layers (y⁺
-avg ≈ 50 at 0.6 m/s steady, dipping into the buffer layer at the lowest
-speeds); raw CAD geometry with frozen propellers and no tether; the
-rotational added masses are sealed-geometry BEM values about the BEM
-centroid, not viscous CFD values — and the BEM matrix should be read as a
-sealed-geometry potential-flow reference rather than a strict upper bound,
-since the sway result shows that directions dominated by enclosed cavities
-can reach it; translational coefficients depend on the
-KC→0 extrapolation model, and the quoted ± covers only the two forms
-tested (linear, KC^(2/3)) over KC ∈ [0.26, 1.18]; the oscillating-inflow
-method assumes uniform ambient acceleration (exact Froude–Krylov
-subtraction for a uniform stream); no free-surface effects (deeply
-submerged assumption).
+Both production meshes were embedded in refinement families (background
+cell size scaled by r ≈ 1.33 per step; snappy levels (2 3), feature level
+3, buffers, wake box, domain and all numerics identical; checkMesh gates
+nonOrtho < 65 / skew < 4 passed by every member; representative
+h = (V_fluid/N)^(1/3)).
 
-## 8. Reproducing
+**Drag family (steady surge at 0.6 m/s, production mesh = medium):**
+
+| mesh | N cells | h | F [N] | iters | y⁺ avg/max |
+|---|---|---|---|---|---|
+| coarse | 189,868 | 45.00 mm | 13.5700 | 500 | 71.6 / 238 |
+| medium | 391,032 | 35.37 mm | 13.2853 | 500 | 51.6 / 206 |
+| fine | 836,517 | 27.45 mm | 12.7698 | 1000 | 37.9 / 152 |
+| v.fine | 1,833,168 | 21.14 mm | 12.8925 | 1000 | 27.2 / 137 |
+
+The first three meshes are formally divergent (R = 1.81): each refinement
+resolves new sub-centimetre CAD geometry, so the family is not
+self-similar. The 4th mesh shows the effect saturating, with a sign flip
+(oscillatory): |ε43| = 0.123 < |ε32|/r = 0.397, apparent |ε|-decay order
+p ≈ 5.5 over meshes 2–4, Richardson limit F_ext ≈ 12.93 N, finest-pair
+oscillation band [12.77, 12.89] N. The production value 13.29 N sits
++2.7% above the Richardson limit → certified as-is under the ≤3% rule,
+with the refined-mesh trend pointing lower. Since Cd is near-constant
+across the sweep this propagates multiplicatively: K_Q = 36.25 with a
+refined-mesh limit ≈ 35.3 N·s²/m².
+
+**Added-mass family (heave at KC = 0.591, production mesh = medium).**
+Δt = T/150 certified by a T/300 guard on the medium mesh (m_a shift
+0.155% < 0.5% gate). Each mesh's own patch-integral ρV_solid enters its
+Froude–Krylov subtraction:
+
+| mesh | N cells | h | α [kg] | ρV_solid [kg] | m_a [kg] |
+|---|---|---|---|---|---|
+| coarse | 409,677 | 61.93 mm | 48.747 | 15.050 | 33.697 |
+| medium | 934,645 | 47.05 mm | 48.342 | 14.392 | 33.950 |
+| fine | 2,154,773 | 35.61 mm | 47.949 | 14.263 | 33.685 |
+
+Family spread 0.78% (registered prediction was ≤2–3%), oscillating about
+33.8 kg (R = −1.04): α falls smoothly with refinement while ρV_solid falls
+in near-lockstep, and their difference is mesh-insensitive. Certified:
+**m_a(heave, KC 0.591) = 33.95 ± 0.13 (mesh, oscillatory convention)
+± 0.05 (dt) kg.** A fine-mesh check at KC = 1.18 gives m_a = 36.11 kg
+(−0.36 kg vs the medium-mesh curve) with the KC-slope preserved to 4%
+(4.11 vs 4.28 kg/KC): a slow mesh drift in α not fully cancelled by the
+V_solid correction admits a ~1% one-sided systematic toward lower m_a;
+the coefficient sheet is unchanged within its quoted uncertainty.
+
+## 8. Limits of this dataset (read before using)
+
+Mesh discretization is quantified, not assumed (§7): drag carries a −2.7%
+refined-mesh systematic toward its Richardson limit of 12.93 N with a
+±0.5% oscillation band, and heave added mass carries ±0.39% (mesh) ±
+0.16% (dt) plus a ~1% one-sided systematic toward lower m_a from the
+fine-mesh KC = 1.18 check; surge/sway mesh uncertainty is assumed to be
+of the same class (±0.4%), subdominant to the extrapolation-model spread.
+The remaining limits: wall functions on meshes without resolved boundary
+layers (y⁺ avg 38–72 across the drag family, dipping to 27 on the finest
+mesh and into the buffer layer at the lowest sweep speed); raw CAD
+geometry with frozen propellers and no tether; the rotational added
+masses are sealed-geometry BEM values about the BEM centroid, not viscous
+CFD values — and the BEM matrix should be read as a sealed-geometry
+potential-flow reference rather than a strict upper bound, since the sway
+result shows that directions dominated by enclosed cavities can reach it;
+translational coefficients depend on the KC→0 extrapolation model, and
+the quoted ± covers only the two forms tested (linear, KC^(2/3)) over
+KC ∈ [0.26, 1.18]; the oscillating-inflow method assumes uniform ambient
+acceleration (exact Froude–Krylov subtraction for a uniform stream); no
+free-surface effects (deeply submerged assumption).
+
+## 9. Reproducing
 
 ```
 # steady drag point            # forced oscillation point

@@ -1,0 +1,50 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      omega;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// omega = k^0.5/(Cmu^0.25 * l), l = 0.07*L = 0.032 m -> ~2.1 1/s
+dimensions      [0 0 -1 0 0 0 0];
+
+internalField   uniform 2.1;
+
+boundaryField
+{
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 2.1;
+    }
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 2.1;
+        value           uniform 2.1;
+    }
+
+    "side.*"
+    {
+        type            symmetry;
+    }
+
+    "BROV2.*"
+    {
+        type            omegaWallFunction;
+        value           uniform 2.1;
+    }
+}
+
+// ************************************************************************* //

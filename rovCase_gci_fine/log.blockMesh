@@ -1,0 +1,78 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : blockMesh
+Date   : Jul 18 2026
+Time   : 13:58:10
+Host   : "bdml-GIGABYTE-RPL999"
+PID    : 14274
+I/O    : uncollated
+Case   : /home/bdml/Desktop/OpenFoam12/rovCase_gci_fine
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Reading "blockMeshDict"
+
+Creating block mesh from
+    "system/blockMeshDict"
+No non-linear block edges defined
+No non-planar block faces defined
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+
+Check topology
+
+	Basic statistics
+		Number of internal faces : 0
+		Number of boundary faces : 6
+		Number of defined boundary faces : 6
+		Number of undefined boundary faces : 0
+	Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 1
+    Block 0 cell size :
+        i : 0.0339041 .. 0.0339041
+        j : 0.03375 .. 0.03375
+        k : 0.03375
+
+No patch pairs to merge
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (-0.945 -0.945 -0.945) (1.53 1.215 2.295)
+  nPoints: 466570
+  nCells: 448512
+  nFaces: 1363360
+  nInternalFaces: 1327712
+----------------
+Patches
+----------------
+  patch 0 (start: 1327712 size: 4672) name: inlet
+  patch 1 (start: 1332384 size: 4672) name: outlet
+  patch 2 (start: 1337056 size: 6144) name: sideXMin
+  patch 3 (start: 1343200 size: 6144) name: sideXMax
+  patch 4 (start: 1349344 size: 7008) name: sideYMin
+  patch 5 (start: 1356352 size: 7008) name: sideYMax
+
+End
+

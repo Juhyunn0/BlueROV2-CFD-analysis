@@ -1,0 +1,78 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : foamPostProcess -solver incompressibleFluid -func yPlus -latestTime -parallel
+Date   : Jul 18 2026
+Time   : 14:05:59
+Host   : "bdml-GIGABYTE-RPL999"
+PID    : 16257
+I/O    : uncollated
+Case   : /home/bdml/Desktop/OpenFoam12/rovCase_gci_fine
+nProcs : 8
+Slaves : 
+7
+(
+"bdml-GIGABYTE-RPL999.16258"
+"bdml-GIGABYTE-RPL999.16259"
+"bdml-GIGABYTE-RPL999.16260"
+"bdml-GIGABYTE-RPL999.16261"
+"bdml-GIGABYTE-RPL999.16262"
+"bdml-GIGABYTE-RPL999.16263"
+"bdml-GIGABYTE-RPL999.16264"
+)
+
+Pstream initialised with:
+    floatTransfer      : false
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 1000
+
+Time = 1000s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+Selecting RAS turbulence model kOmegaSST
+RAS
+{
+    model           kOmegaSST;
+    turbulence      on;
+    printCoeffs     on;
+    alphaK1         0.85;
+    alphaK2         1;
+    alphaOmega1     0.5;
+    alphaOmega2     0.856;
+    gamma1          0.555556;
+    gamma2          0.44;
+    beta1           0.075;
+    beta2           0.0828;
+    betaStar        0.09;
+    a1              0.31;
+    b1              1;
+    c1              10;
+    F3              false;
+}
+
+No MRF models present
+
+Selecting patchDistMethod meshWave
+yPlus yPlus write:
+    writing object yPlus
+    patch BROV2 y+ : min = 2.29408e-06, max = 151.508, average = 37.8526
+
+
+End
+
+Finalising parallel run

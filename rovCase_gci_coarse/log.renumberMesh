@@ -1,0 +1,68 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : renumberMesh -overwrite -parallel
+Date   : Jul 18 2026
+Time   : 13:58:10
+Host   : "bdml-GIGABYTE-RPL999"
+PID    : 14216
+I/O    : uncollated
+Case   : /home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse
+nProcs : 8
+Slaves : 
+7
+(
+"bdml-GIGABYTE-RPL999.14217"
+"bdml-GIGABYTE-RPL999.14218"
+"bdml-GIGABYTE-RPL999.14219"
+"bdml-GIGABYTE-RPL999.14220"
+"bdml-GIGABYTE-RPL999.14221"
+"bdml-GIGABYTE-RPL999.14222"
+"bdml-GIGABYTE-RPL999.14223"
+)
+
+Pstream initialised with:
+    floatTransfer      : false
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Mesh size: 189868
+Before renumbering :
+    band           : 24306
+    profile        : 5.44888e+08
+
+Using default renumberMethod.
+
+Selecting renumberMethod CuthillMcKee
+
+Reading geometric fields
+
+Reading volScalarField p
+Reading volScalarField nut
+Reading volScalarField k
+Reading volScalarField omega
+Reading volVectorField U
+
+After renumbering :
+    band           : 1460
+    profile        : 1.4095e+08
+
+Writing mesh to "constant"
+
+End
+
+Finalising parallel run

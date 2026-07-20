@@ -1,0 +1,5 @@
+RUN-START rovCase_gci_coarse 13:59:31
+RUN-DONE rovCase_gci_coarse 13:59:48
+RUN-START rovCase_gci_fine 13:59:48
+RUN-DONE rovCase_gci_fine 14:02:05
+GCI RUNS COMPLETE

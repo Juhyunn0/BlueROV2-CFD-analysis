@@ -11,7 +11,9 @@ normal to the oscillation direction.
 As-meshed bbox extents of BROV2v.stl (vehicle frame, verified 2026-07-14):
 x (surge) 0.457200, y (sway) 0.574845, z (heave) 0.253852 m.
 
-Usage: morison_fit.py <caseDir> <x|y|z> <T> <U0> [--json OUT]
+Usage: morison_fit.py <caseDir> <x|y|z> <T> <U0> [--json OUT] [--rhoV KG]
+--rhoV overrides the Froude-Krylov mass (default 14.40 kg, the production
+medium mesh); mesh-convergence fits must pass each mesh's own rho*V_solid.
 """
 import json
 import sys
@@ -46,7 +48,7 @@ def read_forces(case):
     return t, F
 
 
-def fit(case, direction, T, U0):
+def fit(case, direction, T, U0, rho_v=RHO_V):
     t, Fall = read_forces(case)
     F = Fall[:, COMP[direction]]
     w = t >= 2.0 * T                   # last 3 of 5 periods
@@ -70,8 +72,8 @@ def fit(case, direction, T, U0):
         'U0': U0,
         'KC': U0 * T / EXT[direction],
         'alpha': float(alpha),
-        'rhoV': RHO_V,
-        'ma': float(alpha) - RHO_V,
+        'rhoV': rho_v,
+        'ma': float(alpha) - rho_v,
         'beta': float(beta),
         'Cd': float(beta) / (0.5 * RHO * A),
         'A_ref': A,
@@ -85,7 +87,9 @@ def fit(case, direction, T, U0):
 if __name__ == '__main__':
     case, direction, T, U0 = sys.argv[1], sys.argv[2], float(sys.argv[3]), \
         float(sys.argv[4])
-    out = fit(case, direction, T, U0)
+    rho_v = float(sys.argv[sys.argv.index('--rhoV') + 1]) \
+        if '--rhoV' in sys.argv else RHO_V
+    out = fit(case, direction, T, U0, rho_v)
     print(json.dumps(out, indent=1))
     if '--json' in sys.argv:
         path = sys.argv[sys.argv.index('--json') + 1]

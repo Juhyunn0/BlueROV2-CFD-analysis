@@ -1,0 +1,149 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : decomposePar -copyZero
+Date   : Jul 18 2026
+Time   : 13:57:43
+Host   : "bdml-GIGABYTE-RPL999"
+PID    : 14139
+I/O    : uncollated
+Case   : /home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Calculating distribution of cells
+
+Selecting decomposer hierarchical
+
+Finished decomposition in 0.012402 s
+
+Calculating original mesh data
+
+Distributing cells to processors
+
+Distributing faces to processors
+
+Distributing points to processors
+
+Constructing processor meshes
+
+Processor 0
+    Number of cells = 9963
+    Number of faces shared with processor 1 = 503
+    Number of faces shared with processor 2 = 554
+    Number of faces shared with processor 3 = 3
+    Number of faces shared with processor 4 = 386
+    Number of processor patches = 4
+    Number of processor faces = 1446
+    Number of boundary faces = 1414
+
+Processor 1
+    Number of cells = 9963
+    Number of faces shared with processor 0 = 503
+    Number of faces shared with processor 3 = 576
+    Number of faces shared with processor 4 = 33
+    Number of faces shared with processor 5 = 409
+    Number of processor patches = 4
+    Number of processor faces = 1521
+    Number of boundary faces = 1393
+
+Processor 2
+    Number of cells = 9963
+    Number of faces shared with processor 0 = 554
+    Number of faces shared with processor 3 = 468
+    Number of faces shared with processor 4 = 7
+    Number of faces shared with processor 6 = 409
+    Number of processor patches = 4
+    Number of processor faces = 1438
+    Number of boundary faces = 1408
+
+Processor 3
+    Number of cells = 9963
+    Number of faces shared with processor 0 = 3
+    Number of faces shared with processor 1 = 576
+    Number of faces shared with processor 2 = 468
+    Number of faces shared with processor 5 = 7
+    Number of faces shared with processor 6 = 33
+    Number of faces shared with processor 7 = 386
+    Number of processor patches = 6
+    Number of processor faces = 1473
+    Number of boundary faces = 1419
+
+Processor 4
+    Number of cells = 9963
+    Number of faces shared with processor 0 = 386
+    Number of faces shared with processor 1 = 33
+    Number of faces shared with processor 2 = 7
+    Number of faces shared with processor 5 = 468
+    Number of faces shared with processor 6 = 576
+    Number of faces shared with processor 7 = 3
+    Number of processor patches = 6
+    Number of processor faces = 1473
+    Number of boundary faces = 1419
+
+Processor 5
+    Number of cells = 9963
+    Number of faces shared with processor 1 = 409
+    Number of faces shared with processor 3 = 7
+    Number of faces shared with processor 4 = 468
+    Number of faces shared with processor 7 = 554
+    Number of processor patches = 4
+    Number of processor faces = 1438
+    Number of boundary faces = 1408
+
+Processor 6
+    Number of cells = 9963
+    Number of faces shared with processor 2 = 409
+    Number of faces shared with processor 3 = 33
+    Number of faces shared with processor 4 = 576
+    Number of faces shared with processor 7 = 503
+    Number of processor patches = 4
+    Number of processor faces = 1521
+    Number of boundary faces = 1393
+
+Processor 7
+    Number of cells = 9963
+    Number of faces shared with processor 3 = 386
+    Number of faces shared with processor 4 = 3
+    Number of faces shared with processor 5 = 554
+    Number of faces shared with processor 6 = 503
+    Number of processor patches = 4
+    Number of processor faces = 1446
+    Number of boundary faces = 1414
+
+Number of processor faces = 5878
+Max number of cells = 9963 (0% above average 9963)
+Max number of processor patches = 6 (33.3333% above average 4.5)
+Max number of faces between processors = 1521 (3.50459% above average 1469.5)
+
+Time = 0s
+
+Processor 0: copying "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/0"
+ to "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/processor0/0"
+Processor 1: copying "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/0"
+ to "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/processor1/0"
+Processor 2: copying "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/0"
+ to "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/processor2/0"
+Processor 3: copying "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/0"
+ to "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/processor3/0"
+Processor 4: copying "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/0"
+ to "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/processor4/0"
+Processor 5: copying "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/0"
+ to "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/processor5/0"
+Processor 6: copying "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/0"
+ to "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/processor6/0"
+Processor 7: copying "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/0"
+ to "/home/bdml/Desktop/OpenFoam12/rovCase_gci_coarse/processor7/0"
+
+End
+
